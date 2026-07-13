@@ -838,4 +838,17 @@ tr.closed td i {
         padding: 15px 20px;
         font-size: 0.95rem;
     }
+
+    .carousel {
+        height: 250px;
+    }
+
+    .clase-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .clase-carousel {
+        height: 250px;
+    }
 }

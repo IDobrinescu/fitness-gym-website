@@ -475,6 +475,23 @@
             if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % slides.length; lightboxImg.src = slides[lightboxIndex].src; }
         });
 
+        // Swipe support for lightbox
+        let lightboxSwipeStartX = 0;
+        lightbox.addEventListener('touchstart', (e) => {
+            lightboxSwipeStartX = e.touches[0].clientX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - lightboxSwipeStartX;
+            if (Math.abs(dx) > 50) {
+                if (dx < 0) {
+                    lightboxIndex = (lightboxIndex + 1) % slides.length;
+                } else {
+                    lightboxIndex = (lightboxIndex - 1 + slides.length) % slides.length;
+                }
+                lightboxImg.src = slides[lightboxIndex].src;
+            }
+        }, { passive: true });
+
         // CLASE CAROUSEL
         const claseSlides = document.querySelectorAll('.clase-slide');
         let currentClaseSlide = 0;
