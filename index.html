@@ -424,6 +424,23 @@
         document.querySelector('.carousel-btn.prev').addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); resetCarousel(); });
         document.querySelector('.carousel-btn.next').addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); resetCarousel(); });
 
+        // Swipe support for main carousel
+        const carouselEl = document.querySelector('.carousel');
+        let swipeStartX = 0;
+        let swipeStartY = 0;
+        carouselEl.addEventListener('touchstart', (e) => {
+            swipeStartX = e.touches[0].clientX;
+            swipeStartY = e.touches[0].clientY;
+        }, { passive: true });
+        carouselEl.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - swipeStartX;
+            const dy = e.changedTouches[0].clientY - swipeStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+                if (dx < 0) { nextSlide(); } else { prevSlide(); }
+                resetCarousel();
+            }
+        }, { passive: true });
+
         // LIGHTBOX
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.querySelector('.lightbox-img');
@@ -487,6 +504,27 @@
             nextClaseSlide();
             resetClaseCarousel();
         });
+
+        // Swipe support for clase carousel
+        const claseEl = document.querySelector('.clase-carousel');
+        let claseSwipeStartX = 0;
+        let claseSwipeStartY = 0;
+        claseEl.addEventListener('touchstart', (e) => {
+            claseSwipeStartX = e.touches[0].clientX;
+            claseSwipeStartY = e.touches[0].clientY;
+        }, { passive: true });
+        claseEl.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - claseSwipeStartX;
+            const dy = e.changedTouches[0].clientY - claseSwipeStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+                if (dx < 0) { nextClaseSlide(); } else {
+                    claseSlides[currentClaseSlide].classList.remove('active');
+                    currentClaseSlide = (currentClaseSlide - 1 + claseSlides.length) % claseSlides.length;
+                    claseSlides[currentClaseSlide].classList.add('active');
+                }
+                resetClaseCarousel();
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
