@@ -445,12 +445,18 @@
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.querySelector('.lightbox-img');
         let lightboxIndex = 0;
+        let lightboxSlides = slides;
+
+        function openLightbox(sourceSlides, index) {
+            lightboxSlides = sourceSlides;
+            lightboxIndex = index;
+            lightboxImg.src = lightboxSlides[lightboxIndex].src;
+            lightbox.classList.add('active');
+        }
 
         document.querySelector('.carousel').addEventListener('click', (e) => {
             if (e.target.classList.contains('carousel-btn')) return;
-            lightboxIndex = currentSlide;
-            lightboxImg.src = slides[lightboxIndex].src;
-            lightbox.classList.add('active');
+            openLightbox(slides, currentSlide);
         });
 
         document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
@@ -458,21 +464,21 @@
 
         document.querySelector('.lightbox-prev').addEventListener('click', (e) => {
             e.stopPropagation();
-            lightboxIndex = (lightboxIndex - 1 + slides.length) % slides.length;
-            lightboxImg.src = slides[lightboxIndex].src;
+            lightboxIndex = (lightboxIndex - 1 + lightboxSlides.length) % lightboxSlides.length;
+            lightboxImg.src = lightboxSlides[lightboxIndex].src;
         });
 
         document.querySelector('.lightbox-next').addEventListener('click', (e) => {
             e.stopPropagation();
-            lightboxIndex = (lightboxIndex + 1) % slides.length;
-            lightboxImg.src = slides[lightboxIndex].src;
+            lightboxIndex = (lightboxIndex + 1) % lightboxSlides.length;
+            lightboxImg.src = lightboxSlides[lightboxIndex].src;
         });
 
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') lightbox.classList.remove('active');
-            if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + slides.length) % slides.length; lightboxImg.src = slides[lightboxIndex].src; }
-            if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % slides.length; lightboxImg.src = slides[lightboxIndex].src; }
+            if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + lightboxSlides.length) % lightboxSlides.length; lightboxImg.src = lightboxSlides[lightboxIndex].src; }
+            if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % lightboxSlides.length; lightboxImg.src = lightboxSlides[lightboxIndex].src; }
         });
 
         // Swipe support for lightbox
@@ -484,11 +490,11 @@
             const dx = e.changedTouches[0].clientX - lightboxSwipeStartX;
             if (Math.abs(dx) > 50) {
                 if (dx < 0) {
-                    lightboxIndex = (lightboxIndex + 1) % slides.length;
+                    lightboxIndex = (lightboxIndex + 1) % lightboxSlides.length;
                 } else {
-                    lightboxIndex = (lightboxIndex - 1 + slides.length) % slides.length;
+                    lightboxIndex = (lightboxIndex - 1 + lightboxSlides.length) % lightboxSlides.length;
                 }
-                lightboxImg.src = slides[lightboxIndex].src;
+                lightboxImg.src = lightboxSlides[lightboxIndex].src;
             }
         }, { passive: true });
 
@@ -520,6 +526,11 @@
             e.stopPropagation();
             nextClaseSlide();
             resetClaseCarousel();
+        });
+
+        document.querySelector('.clase-carousel').addEventListener('click', (e) => {
+            if (e.target.classList.contains('clase-btn')) return;
+            openLightbox(claseSlides, currentClaseSlide);
         });
 
         // Swipe support for clase carousel
