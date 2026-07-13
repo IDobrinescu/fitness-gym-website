@@ -324,6 +324,282 @@ section {
     line-height: 1.7;
 }
 
+/* ANTRENORI */
+.antrenori {
+    background: var(--bg-secondary);
+}
+
+.antrenori-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.antrenor-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    text-align: center;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.antrenor-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+}
+
+.antrenor-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    margin-bottom: 20px;
+}
+
+.antrenor-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.antrenor-info p {
+    color: var(--text-secondary);
+}
+
+.antrenor-info a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.antrenor-info a:hover {
+    color: var(--accent);
+}
+
+/* DESPRE GALLERY */
+.despre-gallery {
+    position: relative;
+}
+
+/* CAROUSEL */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+    cursor: pointer;
+}
+
+.carousel-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+    background: var(--accent);
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--accent);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: var(--accent);
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+/* CLASE AEROBIC */
+.clase {
+    background: var(--bg-secondary);
+}
+
+.clase-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.clase-carousel {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--border);
+}
+
+.clase-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.clase-slide.active {
+    opacity: 1;
+}
+
+.clase-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.clase-btn:hover {
+    background: var(--accent);
+}
+
+.clase-btn.prev {
+    left: 10px;
+}
+
+.clase-btn.next {
+    right: 10px;
+}
+
+.clase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.clase-schedule,
+.clase-contact {
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.clase-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+.clase-info h3 i {
+    margin-right: 10px;
+}
+
+.clase-info p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 5px;
+}
+
+.clase-info a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.clase-info a:hover {
+    color: var(--accent);
+}
+
 /* PROGRAM */
 .program {
     background: var(--bg-secondary);
